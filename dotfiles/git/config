@@ -1,0 +1,35 @@
+[user]
+	email = 53244048+nakamura0907@users.noreply.github.com
+	name = nakamura0907
+[init]
+	defaultBranch = main
+[core]
+	editor = nvim
+[pager]
+	config = cat
+	branch = cat
+	log = less
+[alias]
+	pushoh = push origin HEAD
+	pushf = push --force-with-lease --force-if-includes
+
+	tags = tag -l
+	branches = branch -a
+	remotes = remote -v
+
+	co = checkout
+	st = status
+	br = branch
+	ci = commit
+	d = diff
+	
+	lg = log -10 --color=always --all --graph --topo-order --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+    graph = log --graph --oneline --decorate=full
+[credential "https://github.com"]
+	helper = 
+	helper = !gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !gh auth git-credential
+[commit]
+	template = ~/.config/git/.commit_template
