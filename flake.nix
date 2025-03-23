@@ -12,24 +12,22 @@
   };
 
   outputs = { nixpkgs, home-manager, flake-utils, ... }:
-    flake-utils.lib.eachDefaultSystem (system:
-      let
-        pkgs = nixpkgs.legacyPackages.${system};
-      in {
-        devShells = {
-          default = import ./shells/shell.nix { inherit pkgs; };
+    let
+      systems = {
+        x86_64-linux = "x86_64-linux";
+      };
+    in {
+      homeConfigurations = {
+        "x86_64-linux" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.${systems."x86_64-linux"};
+          modules = [
+            ./hosts/x86_64-linux/default.nix
+          ];
         };
+      };
 
-        homeConfigurations."nakamura0907" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-
-          # Specify your home configuration modules here, for example,
-          # the path to your home.nix.
-          modules = [ ./home.nix ];
-
-          # Optionally use extraSpecialArgs
-          # to pass through arguments to home.nix
-        };
-      }
-  );
+      devShells = flake-utils.lib.eachDefaultSystem (system: {
+        default = import ./shells/shell.nix { inherit (nixpkgs.legacyPackages.${system}) pkgs; };
+      });
+    };
 }
