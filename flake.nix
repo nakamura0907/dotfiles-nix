@@ -26,8 +26,11 @@
         };
       };
 
-      devShells = flake-utils.lib.eachDefaultSystem (system: {
-        default = import ./shells/shell.nix { inherit (nixpkgs.legacyPackages.${system}) pkgs; };
-      });
+      # FIXME: エラーが出るので修正する
+      # devShells = flake-utils.lib.eachDefaultSystem (system: {
+      #   default = import ./shells/shell.nix { inherit (nixpkgs.legacyPackages.${system}) pkgs; };
+      # });
+      # TODO: ループなどを使って定義を改善する
+      devShells.${systems."x86_64-linux"}.default = import ./shells/shell.nix { inherit (nixpkgs.legacyPackages.${systems."x86_64-linux"}) pkgs; };
     };
 }
