@@ -53,9 +53,6 @@
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
-
-    # Conflicting managed target files:が発生するためここで指定する
-    ".config/git".source = ../../dotfiles/git;
   };
 
   # Home Manager can also manage your environment variables through

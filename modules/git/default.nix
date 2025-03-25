@@ -1,9 +1,12 @@
 { pkgs, ... }:
 
 {
- programs.git = {
-    enable = true;
-    userName = "nakamura0907";
-    userEmail = "53244048+nakamura0907@users.noreply.github.com";
-  };
+    home.packages = with pkgs; [
+        git
+    ];
+
+    xdg.configFile = {
+        "git/config".source = ./config;
+        "git/.commit_template".source = ./.commit_template;
+    };
 }
