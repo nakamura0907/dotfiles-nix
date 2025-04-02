@@ -6,5 +6,7 @@
     bat
     # ls
     eza
+
+    fzf
   ];
 }
