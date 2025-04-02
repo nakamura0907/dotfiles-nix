@@ -11,6 +11,7 @@
     # ls
     eza
 
+    dnsutils
     fzf
   ];
 }
