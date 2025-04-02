@@ -13,5 +13,6 @@
 
     dnsutils
     fzf
+    go-task
   ];
 }
