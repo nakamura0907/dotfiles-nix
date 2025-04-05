@@ -15,6 +15,7 @@
     let
       systems = {
         x86_64-linux = "x86_64-linux";
+        aarch64-darwin = "aarch64-darwin";
       };
     in {
       homeConfigurations = {
@@ -22,6 +23,12 @@
           pkgs = nixpkgs.legacyPackages.${systems."x86_64-linux"};
           modules = [
             ./hosts/x86_64-linux/default.nix
+          ];
+        };
+        "aarch64-darwin" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.${systems."aarch64-darwin"};
+          modules = [
+            ./hosts/aarch64-darwin/default.nix
           ];
         };
       };
