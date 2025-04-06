@@ -9,6 +9,7 @@
 		nodejs_22 pnpm_10
 
 		ansible
+		docker colima
 		kubectl fluxcd
 		tenv
 	];
