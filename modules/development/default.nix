@@ -8,7 +8,7 @@
 		# node
 		nodejs_22 pnpm_10
 
-		kubectl
+		kubectl fluxcd
 		tenv
 	];
 }
