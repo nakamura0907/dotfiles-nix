@@ -1,7 +1,12 @@
 { pkgs, ...} :
 
 {
-	programs.neovim = {
-		enable = true;
+	home.packages = with pkgs; [
+		neovim
+	];
+
+	xdg.configFile."nvim" = {
+		source = ./config;
+		recursive = true;
 	};
 }
