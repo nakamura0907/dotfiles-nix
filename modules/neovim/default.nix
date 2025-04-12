@@ -1,9 +1,12 @@
 { pkgs, ...} :
 
 {
-	home.packages = with pkgs; [
-		neovim
-	];
+	programs.neovim = {
+		enable = true;
+		plugins = with pkgs; [
+			vimPlugins.nvim-tree-lua
+		];
+	};
 
 	xdg.configFile."nvim" = {
 		source = ./config;
