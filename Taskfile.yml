@@ -7,6 +7,12 @@ tasks:
     desc: List all tasks
     cmd: task -l
 
+  home-manager:switch:mac:
+    cmds:
+      - task: home-manager:switch
+        vars:
+          CLI_ARGS: aarch64-darwin
+
   home-manager:switch:
     desc: |
       Build and activate configuration.
