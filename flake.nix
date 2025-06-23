@@ -9,9 +9,13 @@
     };
 
     flake-utils.url = "github:numtide/flake-utils";
+	rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, flake-utils, ... }:
+  outputs = { nixpkgs, home-manager, flake-utils, rust-overlay, ... }:
     let
       systems = {
         x86_64-linux = "x86_64-linux";
@@ -20,14 +24,20 @@
     in {
       homeConfigurations = {
         "x86_64-linux" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.${systems."x86_64-linux"};
+		  pkgs = import nixpkgs {
+            system = systems."x86_64-linux";
+            overlays = [ rust-overlay.overlays.default ];
+          };
           modules = [
             ./hosts/x86_64-linux/default.nix
           ];
         };
         "aarch64-darwin" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.${systems."aarch64-darwin"};
-          modules = [
+          pkgs = import nixpkgs {
+            system = systems."aarch64-darwin";
+            overlays = [ rust-overlay.overlays.default ];
+          };
+		  modules = [
             ./hosts/aarch64-darwin/default.nix
           ];
         };
