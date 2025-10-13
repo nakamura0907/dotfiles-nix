@@ -14,8 +14,9 @@
  		})  # oxalica/rust-overlay
 
 		ansible
-		docker colima
+		# docker colima LocalStack（Dev Containers?）と相性が悪いため異なるコンテナランタイムを使用
 		kubectl fluxcd
 		tenv
+		trivy terraform-docs
 	];
 }

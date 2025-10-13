@@ -69,6 +69,7 @@ esac
 
 # Other
 export PATH="$PATH:/opt/nvim-linux64/bin"
+export PATH="$HOME/.rd/bin:$PATH"
 
 # ----------------------------------------
 # 4. Others
