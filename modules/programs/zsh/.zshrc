@@ -40,13 +40,17 @@ alias cp="cp -i"
 alias mv="mv -i"
 alias rm="rm -i"
 
-# ls
-alias la="ls -AF"
-alias ll="ls -AlhF"
+alias ls="eza"
+alias la="eza -AF"
+alias ll="eza -AlhF"
+alias grep="rg"
 
 # others
 alias vim="nvim"
 alias suvim="sudo -E nvim "
+
+alias apply-wsl="nix run .#homeConfigurations.wsl.activationPackage"
+alias apply-mac="nix run .#homeConfigurations.macos.activationPackage"
 
 # ----------------------------------------
 # 3. environment variables
