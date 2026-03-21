@@ -25,9 +25,9 @@
   };
 
   imports = [
-    ./programs/git
-    ./programs/neovim
-    ./programs/starship
-    ./programs/zsh
+    ./git
+    ./neovim
+    ./starship
+    ./zsh
   ];
 }
