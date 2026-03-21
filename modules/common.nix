@@ -1,5 +1,7 @@
-{ pkgs, ... }: {
-  home.stateVersion = "24.11";
+{ pkgs, stateVersion, ... }: {
+  home = {
+    inherit stateVersion;
+  };
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
