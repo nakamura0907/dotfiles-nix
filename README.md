@@ -15,7 +15,7 @@ wsl --install
 **nixコマンドのインストール**
 
 ```bash
-# MacOS
+# macOS
 sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install)
 
 # WSL2
@@ -23,10 +23,20 @@ sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install) --daemon
 mkdir -p ~/.config/nix && echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
 ```
 
+```bash
+nix flake update
+```
+
+**nix-darwinの実行**
+
+```bash
+# macOS限定
+sudo nix run nix-darwin -- switch --flake .#macos
+```
+
 **Home Managerの実行**
 
 ```bash
-nix flake update
 nix run home-manager -- switch --flake .#<hosts>
 ```
 
