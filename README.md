@@ -30,6 +30,9 @@ nix flake update
 **nix-darwinの実行**
 
 ```bash
+# 初回限定
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
 # macOS限定
 sudo nix run nix-darwin -- switch --flake .#macos
 ```
