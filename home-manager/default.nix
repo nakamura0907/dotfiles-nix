@@ -28,6 +28,7 @@
     ./git
     ./neovim
     ./starship
+    ./wezterm
     ./zsh
   ];
 }
