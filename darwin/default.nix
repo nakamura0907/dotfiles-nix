@@ -30,5 +30,8 @@
     brews = [
       "mole"
     ];
+    casks = [
+      "wezterm"
+    ];
   };
 }
