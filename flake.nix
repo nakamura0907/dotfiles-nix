@@ -2,10 +2,10 @@
   description = "nakamura0907 dotfiles";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
-    home-manager.url = "github:nix-community/home-manager/release-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-24.11";
+    nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-25.11";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
   };
 
@@ -14,7 +14,7 @@
       macSystem = "aarch64-darwin";
       wslSystem = "x86_64-linux";
 
-      stateVersion = "24.11";
+      stateVersion = "24.11"; # NOTE: https://github.com/nix-community/home-manager/issues/8067
       commonArgs = { inherit inputs stateVersion; };
     in {
       homeConfigurations.macos = home-manager.lib.homeManagerConfiguration {

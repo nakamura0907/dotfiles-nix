@@ -18,13 +18,10 @@
     fzf
     go-task
   ];
-  programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
-    enableZshIntegration = true;
-  };
 
   imports = [
+    ./claude
+    ./direnv
     ./git
     ./neovim
     ./starship
