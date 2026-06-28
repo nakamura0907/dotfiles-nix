@@ -7,7 +7,7 @@
   home.packages = with pkgs; [
     claude-code
     inputs.ccusage.packages.${pkgs.system}.default
-    # rtk
+    rtk
   ];
 
   home.activation = {
