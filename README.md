@@ -1,18 +1,18 @@
 ## コマンド集
 
-- `nix run home-manager -- switch --flake .#macos`
-- `nix run home-manager -- switch --flake .#wsl`
+- `nix run home-manager -- switch --flake .#macos` - macOS (Apple Silicon) で設定を適用
+- `nix run home-manager -- switch --flake .#wsl` - WSL2 (x86_64 Linux) で設定を適用
 
 ## セットアップ手順
 
-**WSL2のインストール**
+### WSL2 のインストール
 
 ```bash
 # Windows(WSL2)
 wsl --install
 ```
 
-**nixコマンドのインストール**
+### Nix のインストール
 
 ```bash
 # macOS
@@ -23,21 +23,20 @@ sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install) --daemon
 mkdir -p ~/.config/nix && echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
 ```
 
+### Flake の更新
+
 ```bash
 nix flake update
 ```
 
-**nix-darwinの実行**
+### nix-darwin の実行 (macOS 初回のみ)
 
 ```bash
-# 初回限定
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-# macOS限定
 sudo nix run nix-darwin -- switch --flake .#macos
 ```
 
-**Home Managerの実行**
+### Home Manager の実行
 
 ```bash
 nix run home-manager -- switch --flake .#<hosts>
@@ -51,3 +50,9 @@ nix run home-manager -- switch --flake .#<hosts>
 command -v zsh | sudo tee -a /etc/shells
 sudo chsh -s $(which zsh) $USER
 ```
+
+## 依存関係
+
+- `nixpkgs` - Nix OS パッケージセット
+- `home-manager` - Home Manager リリース 25.11
+- `nix-darwin` - nix-darwin リリース 25.11

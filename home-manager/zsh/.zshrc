@@ -6,14 +6,14 @@
 
 ZSH_THEME="fino-time"
 
-plugins=(
-	zsh-autosuggestions
-	zsh-syntax-highlighting
-)
-if type brew &>/dev/null; then
-  source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-  source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
+# plugins=(
+# 	zsh-autosuggestions
+# 	zsh-syntax-highlighting
+# )
+# if type brew &>/dev/null; then
+  # source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+  # source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# fi
 
 source $ZSH/oh-my-zsh.sh
 

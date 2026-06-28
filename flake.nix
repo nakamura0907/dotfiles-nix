@@ -1,15 +1,18 @@
 {
   description = "nakamura0907 dotfiles";
 
+  # FIXME: 25.11 deprecated
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-25.11";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+
+    ccusage.url = "github:ccusage/ccusage";
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-darwin, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nix-darwin, ccusage, ... }@inputs:
     let
       macSystem = "aarch64-darwin";
       wslSystem = "x86_64-linux";

@@ -24,6 +24,7 @@
     ./direnv
     ./git
     ./neovim
+    ./python
     ./starship
     ./wezterm
     ./zsh
