@@ -22,6 +22,7 @@
   imports = [
     ./claude
     ./direnv
+    ./docker
     ./git
     ./neovim
     ./python
