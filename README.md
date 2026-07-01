@@ -54,5 +54,5 @@ sudo chsh -s $(which zsh) $USER
 ## 依存関係
 
 - `nixpkgs` - Nix OS パッケージセット
-- `home-manager` - Home Manager リリース 25.11
-- `nix-darwin` - nix-darwin リリース 25.11
+- `home-manager` - Home Manager リリース 26.05
+- `nix-darwin` - nix-darwin リリース 26.05

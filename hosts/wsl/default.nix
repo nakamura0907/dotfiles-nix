@@ -1,6 +1,8 @@
-{ pkgs, ... }: {
-  imports = [ ../../home-manager ];
+{ ... }: {
+  imports = [
+    ../../home-manager
+    ../common.nix
+  ];
 
-  home.username = "nakamura0907";
   home.homeDirectory = "/home/nakamura0907";
 }
