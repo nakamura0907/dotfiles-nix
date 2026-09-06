@@ -1,9 +1,17 @@
-{ config, pkgs, inputs, lib, ...} :
+{
+  config,
+  pkgs,
+  inputs,
+  lib,
+  ...
+}:
 
 {
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "claude-code"
-  ];
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
+    builtins.elem (lib.getName pkg) [
+      "claude-code"
+    ];
   home.packages = with pkgs; [
     claude-code
     inputs.ccusage.packages.${pkgs.system}.default
@@ -11,16 +19,18 @@
   ];
 
   home.activation = {
-    installUvTools = config.lib.dag.entryAfter ["writeBoundary"] ''
-    UV_BIN="${pkgs.uv}/bin/uv"
+    installUvTools = config.lib.dag.entryAfter [ "writeBoundary" ] ''
+      UV_BIN="${pkgs.uv}/bin/uv"
 
-    if [ -x "$UV_BIN" ]; then
-      echo "Running uv tool installs via $UV_BIN..."
-      
-      $DRY_RUN_CMD "$UV_BIN" tool install graphifyy || true
-    else
-      echo "uv binary not found in nix store, skipping tool installation."
-    fi
+      if [ -x "$UV_BIN" ]; then
+        echo "Running uv tool installs via $UV_BIN..."
+        
+        # Official package: The PyPI package is graphifyy (double-y). Other graphify* packages on PyPI are not affiliated. The CLI command is still graphify.
+        # https://github.com/Graphify-Labs/graphify#install
+        $DRY_RUN_CMD "$UV_BIN" tool install graphifyy || true
+      else
+        echo "uv binary not found in nix store, skipping tool installation."
+      fi
     '';
   };
 }
