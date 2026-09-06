@@ -1,9 +1,11 @@
 { pkgs, lib, ... }: {
-  home.packages = with pkgs;
+  home.packages =
+    with pkgs;
     lib.optionals stdenv.isDarwin [
       colima
       docker-client
-    ] ++ lib.optionals stdenv.isLinux [
+    ]
+    ++ lib.optionals stdenv.isLinux [
       docker
       docker-compose
     ];
@@ -12,7 +14,10 @@
     enable = true;
     config = {
       Label = "colima";
-      ProgramArguments = [ "${pkgs.colima}/bin/colima" "start" ];
+      ProgramArguments = [
+        "${pkgs.colima}/bin/colima"
+        "start"
+      ];
       RunAtLoad = true;
       StandardOutPath = "/tmp/colima.log";
       StandardErrorPath = "/tmp/colima.log";

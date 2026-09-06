@@ -1,15 +1,15 @@
-{ pkgs, ...} :
+{ pkgs, ... }:
 
 {
-	programs.neovim = {
-		enable = true;
-		plugins = with pkgs; [
-			vimPlugins.nvim-tree-lua
-		];
-	};
+  programs.neovim = {
+    enable = true;
+    plugins = with pkgs; [
+      vimPlugins.nvim-tree-lua
+    ];
+  };
 
-	xdg.configFile."nvim" = {
-		source = ./config;
-		recursive = true;
-	};
+  xdg.configFile."nvim" = {
+    source = ./config;
+    recursive = true;
+  };
 }

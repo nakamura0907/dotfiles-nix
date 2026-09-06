@@ -2,10 +2,10 @@
 
 {
   home.packages = with pkgs; [
-      starship
+    starship
   ];
 
   xdg.configFile = {
-      "starship.toml".source = ./starship.toml;
+    "starship.toml".source = ./starship.toml;
   };
 }
