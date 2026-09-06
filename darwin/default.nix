@@ -6,6 +6,8 @@
   system.stateVersion = 5;
 
   system = {
+    primaryUser = "nakamura0907";
+
     defaults = {
       NSGlobalDomain = {
         AppleShowAllExtensions = true;
