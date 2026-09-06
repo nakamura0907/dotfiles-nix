@@ -11,28 +11,60 @@
     ccusage.url = "github:ccusage/ccusage";
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-darwin, ccusage, ... }@inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      nix-darwin,
+      ccusage,
+      ...
+    }@inputs:
     let
+      username = "nakamura0907";
       macSystem = "aarch64-darwin";
       wslSystem = "x86_64-linux";
 
       stateVersion = "24.11"; # NOTE: https://github.com/nix-community/home-manager/issues/8067
-      commonArgs = { inherit inputs stateVersion; };
-    in {
-      homeConfigurations.macos = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.${macSystem};
-        modules = [ ./hosts/macos/default.nix ];
-        extraSpecialArgs = commonArgs;
+
+      mkHome =
+        {
+          system,
+          homeDirectory,
+          module,
+        }:
+        home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.${system};
+          modules = [ module ];
+          extraSpecialArgs = {
+            inherit
+              inputs
+              stateVersion
+              username
+              homeDirectory
+              ;
+          };
+        };
+    in
+    {
+      homeConfigurations.macos = mkHome {
+        system = macSystem;
+        homeDirectory = "/Users/${username}";
+        module = ./hosts/macos/default.nix;
       };
       darwinConfigurations.macos = nix-darwin.lib.darwinSystem {
         system = macSystem;
         modules = [ ./darwin/default.nix ];
+        specialArgs = { inherit username; };
       };
 
-      homeConfigurations.wsl = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.${wslSystem};
-        modules = [ ./hosts/wsl/default.nix ];
-        extraSpecialArgs = commonArgs;
+      homeConfigurations.wsl = mkHome {
+        system = wslSystem;
+        homeDirectory = "/home/${username}";
+        module = ./hosts/wsl/default.nix;
       };
+
+      formatter.${macSystem} = nixpkgs.legacyPackages.${macSystem}.nixfmt;
+      formatter.${wslSystem} = nixpkgs.legacyPackages.${wslSystem}.nixfmt;
     };
 }

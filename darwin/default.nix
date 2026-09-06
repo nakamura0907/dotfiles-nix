@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, username, ... }:
 {
   nix.enable = false;
   # Used for backwards compatibility, please read the changelog before changing.
@@ -6,7 +6,7 @@
   system.stateVersion = 5;
 
   system = {
-    primaryUser = "nakamura0907";
+    primaryUser = username;
 
     defaults = {
       NSGlobalDomain = {
