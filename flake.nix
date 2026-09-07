@@ -50,18 +50,18 @@
       homeConfigurations.macos = mkHome {
         system = macSystem;
         homeDirectory = "/Users/${username}";
-        module = ./hosts/macos/default.nix;
+        module = ./hosts/macos/home.nix;
       };
       darwinConfigurations.macos = nix-darwin.lib.darwinSystem {
         system = macSystem;
-        modules = [ ./darwin/default.nix ];
+        modules = [ ./hosts/macos/darwin.nix ];
         specialArgs = { inherit username; };
       };
 
       homeConfigurations.wsl = mkHome {
         system = wslSystem;
         homeDirectory = "/home/${username}";
-        module = ./hosts/wsl/default.nix;
+        module = ./hosts/wsl/home.nix;
       };
 
       formatter.${macSystem} = nixpkgs.legacyPackages.${macSystem}.nixfmt;
