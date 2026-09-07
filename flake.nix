@@ -45,6 +45,32 @@
               ;
           };
         };
+
+      # `nix fmt` (引数なし) はフォーマッタへ0個の引数を渡すため、
+      # 素の nixfmt だと標準入力待ちになり失敗する。
+      # 引数がなければ *.nix を自動で探して整形するようにラップする。
+      mkFormatter =
+        system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+        in
+        pkgs.writeShellApplication {
+          name = "fmt";
+          runtimeInputs = [
+            pkgs.nixfmt
+            pkgs.findutils
+          ];
+          text = ''
+            if [ "$#" -eq 0 ]; then
+              mapfile -d "" -t files < <(find . -path ./.git -prune -o -name '*.nix' -print0)
+              if [ "''${#files[@]}" -gt 0 ]; then
+                nixfmt "''${files[@]}"
+              fi
+            else
+              nixfmt "$@"
+            fi
+          '';
+        };
     in
     {
       homeConfigurations.macos = mkHome {
@@ -64,7 +90,7 @@
         module = ./hosts/wsl/home.nix;
       };
 
-      formatter.${macSystem} = nixpkgs.legacyPackages.${macSystem}.nixfmt;
-      formatter.${wslSystem} = nixpkgs.legacyPackages.${wslSystem}.nixfmt;
+      formatter.${macSystem} = mkFormatter macSystem;
+      formatter.${wslSystem} = mkFormatter wslSystem;
     };
 }
