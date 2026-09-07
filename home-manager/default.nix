@@ -16,7 +16,7 @@
 
     dnsutils
     fzf
-    go-task
+    just
   ];
 
   imports = [

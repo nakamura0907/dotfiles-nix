@@ -1,7 +1,18 @@
 ## コマンド集
 
+### 初回セットアップ時
+
 - `nix run home-manager -- switch --flake .#macos` - macOS (Apple Silicon) で設定を適用
 - `nix run home-manager -- switch --flake .#wsl` - WSL2 (x86_64 Linux) で設定を適用
+
+### 初回セットアップ後
+
+- `just home-macos` - macOS (Apple Silicon) で設定を適用
+- `just home-wsl` - WSL2 (x86_64 Linux) で設定を適用
+- `just darwin` - macOS に nix-darwin 設定を適用
+- `just fmt` - `nix fmt` で全体を整形
+- `just check` - `nix flake check` で評価チェック
+- `just update` - `nix flake update` で依存関係を更新
 
 ## セットアップ手順
 
